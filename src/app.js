@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
-class A extends Component {
+class AA extends Component {
   constructor(props){
     super(props)
     this.state ={}
@@ -12,5 +12,5 @@ class A extends Component {
   }
 }
 
-ReactDOM.render(<A></A>,document.getElementById('root'))
+ReactDOM.render(<AA></AA>,document.getElementById('root'));
 
