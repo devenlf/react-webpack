@@ -1,0 +1,8 @@
+{
+  "map":"inline",
+  "plugins": {
+    "postcss-import": {},
+    "postcss-preset-env": {},
+    "cssnano": {}
+  }
+}
