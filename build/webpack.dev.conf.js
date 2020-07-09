@@ -3,7 +3,16 @@ const base = require('./webpack.base.conf');
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const fs = require('fs')
+const htmlPage = fs.readdirSync('src/views/').map((item)=>{
+  return new HtmlWebpackPlugin({
+    chunks:[item,'common'],
+    filename:`${item}.html`,
+    template: `src/views/${item}/index.html`,
+    inject: 'body',
+    hash: false
+  })
+})
 module.exports=merge(base,{
   mode:'development',
   output:{
@@ -18,11 +27,7 @@ module.exports=merge(base,{
     hot: true
   },
   plugins:[
-    new HtmlWebpackPlugin({
-      template: 'public/index.html',
-      inject: 'body',
-      hash: false
-    }),
+    ...htmlPage,
     new webpack.HotModuleReplacementPlugin()
   ]
 })

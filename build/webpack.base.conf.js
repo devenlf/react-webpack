@@ -1,14 +1,18 @@
 const path = require('path');
+const fs = require('fs')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const isProd = process.env.NODE_ENV !== 'production'
-console.log(process.env.NODE_ENV)
+const pageFiles = {}
+fs.readdirSync('src/views/').map((item)=>{
+  pageFiles[item] = `./src/views/${item}`
+})
 module.exports={
   entry:{
-    app:'./src/app.js',
+    ...pageFiles,
     common: ['react','react-dom'],
   },
   output:{
-    filename: 'js/[name].[chunkhash:8].bundle.js',
+    filename: '[name]/[name].[chunkhash:8].bundle.js',
     path: path.resolve(__dirname, '../dist')
   },
   module:{
@@ -69,8 +73,8 @@ module.exports={
   },
   plugins:[
     new MiniCssExtractPlugin({
-      filename: isProd ? 'css/[name].css':'css/[name].[hash:8].css',
-      chunkFilename:isProd ? 'css/[id].css' : 'css/[id].[hash:8].css', //动态引入配置
+      filename: 'css/[name].css',
+      chunkFilename:'css/[id].css', //动态引入配置
     }),
   ]
 }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import './app.css'
-import './app.less'
+import './index.less'
 class AA extends Component {
   constructor(props){
     super(props)
@@ -9,7 +8,7 @@ class AA extends Component {
   }
   componentDidMount(){}
   render(){
-    return <div>A组件</div>
+    return <div>B组件</div>
   }
 }
 
