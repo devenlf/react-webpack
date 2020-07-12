@@ -20,13 +20,6 @@ const htmlPage = fs.readdirSync('src/views/').map((item)=>{
   })
 })
 
-const cssPage = fs.readdirSync('src/views/').map((item)=>{
-  return new MiniCssExtractPlugin({
-    filename: `${item}/${item}.[hash:8].css`,
-    chunkFilename: `${item}/[id].[hash:8].css`, //动态引入配置
-  })
-})
-
 module.exports=merge(base,{
   mode:'production',
   output:{
@@ -35,7 +28,10 @@ module.exports=merge(base,{
   },
   plugins:[
     ...htmlPage,
-    ...cssPage,
+    new MiniCssExtractPlugin({
+      filename: `[name]/[name].[hash:8].css`,
+      chunkFilename: '[name]/[id].[chunkhash:8].css', //动态引入配置
+    }),
     new CleanWebpackPlugin()
   ],
   optimization:{

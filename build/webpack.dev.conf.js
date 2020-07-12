@@ -28,6 +28,10 @@ module.exports=merge(base,{
   },
   plugins:[
     ...htmlPage,
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+      chunkFilename:'css/[id].css', //动态引入配置
+    }),
     new webpack.HotModuleReplacementPlugin()
   ]
 })
